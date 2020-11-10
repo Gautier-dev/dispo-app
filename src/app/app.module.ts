@@ -1,18 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClarityModule } from '@clr/angular';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProgressBar } from './progressBar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProgressBar
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    NgbModule
+    ClarityModule
   ],
   providers: [],
   bootstrap: [AppComponent]
