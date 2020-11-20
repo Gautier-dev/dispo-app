@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   public clientName: string
   public clientStations: Station[]
   public database: any
+  private id=1
 
 
   constructor(private dataService : DataService){}
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit{
   }
 
   public getFromServer(){
-    this.dataService.sendGetRequest().subscribe(data=>{
+    this.dataService.sendGetRequest(this.id).subscribe(data=>{
       console.log(data)
       this.database=data
       this.clientName = this.database["client"]
