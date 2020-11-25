@@ -1,30 +1,46 @@
 {
-    "client": "Jackie & Michel Laveries",
+    "client": "Michel & Michel Laveries",
     "stations": [
         {
             "name":"Laverie de Brest",
             "adresse":"9 3/4 rue de Brest",
             "dispo": 8, 
-            "max": 12
+            "max": 12,
+            "geo": {
+                "lat": 45.77010440000001,
+                "lng": 4.8826282
+            }
         },
         {
             "name":"Laverie de Saint Malo",
             "adresse":"69 rue de Saint Malo",
             "dispo": 3, 
-            "max": 10
+            "max": 10,
+            "geo": {
+                "lat": 45.7578137,
+                "lng": 4.8320114
+            }
         }
         ,
         {
             "name":"Laverie de Grenoble",
             "adresse":"420 rue de Grenoble",
             "dispo": 1, 
-            "max": 20
+            "max": 20,
+            "geo": {
+                "lat": 45.7384327,
+                "lng": 4.8865961
+            }
         },
         {
             "name":"Laverie de Lyon",
             "adresse":"1 rue de Lyon",
             "dispo": 5, 
-            "max": 12
+            "max": 12,
+            "geo": {
+                "lat": 45.7690096,
+                "lng": 4.8357004
+            }
         }
     ]
 }

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { ClarityModule } from '@clr/angular';
 import { AppComponent } from './app.component';
 import { ProgressBar } from './progressBar.component';
+import { AgmCoreModule } from '@agm/core';
 const routes: Routes = [
   { path: 'home', component: AppComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
@@ -17,7 +18,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     ClarityModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA2EqiPm9zI3SUWgip5zhySlq3ZEb9mbeU'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

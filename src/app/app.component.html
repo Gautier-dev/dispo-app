@@ -3,12 +3,17 @@
     <a href="javascript://">
       <img alt="My Image" src="assets/logo.png" style="max-height: 90%; padding-right: 5px;"/>
     </a>
+    <div class="header-nav">
+      <router-outlet name="home"> 
+        <a routerLink="home" class="active nav-link nav-text" (onClick)="displayAsList()">Home</a>
+        <a routerLink="map" class="active nav-link nav-text" (onClick)="displayAsMap()">Map</a>
+      </router-outlet>
+    </div>
   </div>
 </header>
-
 <h3>{{clientName}}</h3>
 <!--<li *ngFor="let stat of clientStations">station {{stat.name}}</li>-->
-<clr-datagrid>
+<clr-datagrid  *ngIf="displayType === 'list'">
   <clr-dg-column [clrDgField]="'name'">Laverie</clr-dg-column>
   <!--<clr-dg-column [clrDgField]="'adresse'">Adresse</clr-dg-column>-->
   <clr-dg-column [clrDgField]="'dispo'">Machines Disponibles</clr-dg-column>
@@ -19,4 +24,12 @@
   </clr-dg-row>
   <clr-dg-footer>{{clientStations.length}} laveries</clr-dg-footer>
 </clr-datagrid>
+<agm-map [latitude]="lat" [longitude]="lng" *ngIf="displayType === 'map'">
+  <agm-marker *ngFor="let stat of clientStations"[latitude]="stat.geo.latitude" [longitude]="stat.geo.longitude" [mdbTooltip]="'Marker label:'+stat.adresse"></agm-marker>
+</agm-map>
+
+
+
 <div>S.L.I.P</div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2EqiPm9zI3SUWgip5zhySlq3ZEb9mbeU&callback=initMap"
+type="text/javascript"></script>
