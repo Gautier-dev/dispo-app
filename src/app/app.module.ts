@@ -12,6 +12,8 @@ import { MapComponent } from './map/map.component';
 import { StatsComponent } from './stats/stats.component';
 import { ChartsModule } from 'ng2-charts';
 import localeFr from '@angular/common/locales/fr';
+import {HttpClientModule} from '@angular/common/http'
+
 
 
 const routes: Routes = [
@@ -38,7 +40,9 @@ const routes: Routes = [
       apiKey: 'AIzaSyA2EqiPm9zI3SUWgip5zhySlq3ZEb9mbeU'
     }),
     ChartsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
