@@ -1,0 +1,3 @@
+<agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker *ngFor="let stat of clientStations"[latitude]="stat.geo.latitude" [longitude]="stat.geo.longitude" [mdbTooltip]="'Marker label:'+stat.adresse"></agm-marker>
+  </agm-map>

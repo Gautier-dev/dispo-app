@@ -1,6 +1,7 @@
 declare const google: any;
 import { Component, OnInit } from '@angular/core';
 import { ProgressBar } from './progressBar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,15 @@ import { ProgressBar } from './progressBar.component';
 export class AppComponent implements OnInit{
   public clientName: string
   public clientStations: Station[]
-  public displayType = 'map';
+  public displayType = 'list';
   public lat = 45.7690096;
   public lng = 4.8357004;
 
   public ngOnInit(){
     // example.json devrait être ce qui est renvoyé par le back
-    this.parseDatabase("./example.json")
+    // this.parseDatabase("./example.json")
   }
+  constructor(private router: Router) { }
   public parseDatabase(path: string){
     //line below should be replaced with backend call
     
@@ -34,13 +36,7 @@ export class AppComponent implements OnInit{
     this.lat = this.clientStations[0].geo.latitude;
     this.lng = this.clientStations[0].geo.longitude;
   }
-  public displayAsMap(){
-    console.log("display as map");
-    this.displayType = 'map';
-  }
-  public displayAsList(){
-    this.displayType = 'list';
-  }
+  
 }
 
 export class Station {
