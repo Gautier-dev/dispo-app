@@ -1,0 +1,10 @@
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'name'">Laverie</clr-dg-column>
+    <clr-dg-column [clrDgField]="'dispo'">Machines Disponibles</clr-dg-column>
+    <clr-dg-row *clrDgItems="let stat of clientStations">
+      <clr-dg-cell>{{stat.name}}</clr-dg-cell>
+
+      <clr-dg-cell><progress-bar [dispo]="stat.dispo" [max]="stat.max"></progress-bar></clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{clientStations.length}} laveries</clr-dg-footer>
+</clr-datagrid>

@@ -1,22 +1,41 @@
 <header class="header header-4">
   <div class="branding">
     <a href="javascript://">
-      <img alt="My Image" src="assets/logo.png" style="max-height: 90%; padding-bottom: 5px;"/>
+      <img alt="My Image" src="assets/logo.png" style="max-height: 90%; padding-right: 5px;"/>
     </a>
   </div>
+  <div class="header-nav">
+    <a class="nav-link" [routerLink]="['home']">Home</a>
+    <a class="nav-link" [routerLink]="['map']">Map</a>
+    <a class="nav-link" [routerLink]="['stats']">Stats</a>
+  </div>
 </header>
+<h3 style="padding-bottom: 5px;">{{clientName}}</h3>
+<router-outlet></router-outlet>
+  
+  <!--
+  <clr-datagrid>
+    <clr-dg-column [clrDgField]="'name'">Laverie</clr-dg-column>
+    <clr-dg-column [clrDgField]="'dispo'">Machines Disponibles</clr-dg-column>
+    <clr-dg-row *clrDgItems="let stat of clientStations">
+      <clr-dg-cell>{{stat.name}}</clr-dg-cell>
 
-<h3>{{clientName}}</h3>
-<!--<li *ngFor="let stat of clientStations">station {{stat.name}}</li>-->
-<clr-datagrid>
-  <clr-dg-column [clrDgField]="'name'">Laverie</clr-dg-column>
-  <!--<clr-dg-column [clrDgField]="'adresse'">Adresse</clr-dg-column>-->
-  <clr-dg-column [clrDgField]="'dispo'">Machines Disponibles</clr-dg-column>
-  <clr-dg-row *clrDgItems="let stat of clientStations">
-    <clr-dg-cell>{{stat.name}}</clr-dg-cell>
-    <!--<clr-dg-cell>{{stat.adresse}}</clr-dg-cell>-->
-    <clr-dg-cell><progress-bar [dispo]="stat.dispo" [max]="stat.max"></progress-bar></clr-dg-cell>
-  </clr-dg-row>
-  <clr-dg-footer>{{clientStations.length}} laveries</clr-dg-footer>
-</clr-datagrid>
+      <clr-dg-cell><progress-bar [dispo]="stat.dispo" [max]="stat.max"></progress-bar></clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{clientStations.length}} laveries</clr-dg-footer>
+  </clr-datagrid>
+</router-outlet>
+<h3 style="padding-bottom: 5px;">{{clientName}}</h3>
+<router-outlet name="map">
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker *ngFor="let stat of clientStations"[latitude]="stat.geo.latitude" [longitude]="stat.geo.longitude" [mdbTooltip]="'Marker label:'+stat.adresse"></agm-marker>
+  </agm-map>
+-->
+
+
+
+
 <div>S.L.I.P</div>
+<!--
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2EqiPm9zI3SUWgip5zhySlq3ZEb9mbeU&callback=initMap"
+type="text/javascript"></script>-->
