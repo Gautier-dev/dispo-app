@@ -1,4 +1,4 @@
-<clr-datagrid>
+<clr-datagrid *ngIf="clientStations">
     <clr-dg-column [clrDgField]="'name'">Laverie</clr-dg-column>
     <clr-dg-column [clrDgField]="'dispo'">Machines Disponibles</clr-dg-column>
     <clr-dg-row *clrDgItems="let stat of clientStations">

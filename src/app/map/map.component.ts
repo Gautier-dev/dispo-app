@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Station, Geotag, AppComponent} from '../app.component'
+import {Station, Geotag, AppComponent} from '../app.component';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-map',
@@ -11,26 +12,28 @@ export class MapComponent implements OnInit {
   public clientStations: Station[]
   public lat = 45.7690096;
   public lng = 4.8357004;
-  constructor() { }
+  private id=1;
+  public database: any;
+  constructor(private dataService : DataService) { }
 
   ngOnInit(): void {
-    this.parseDatabase("../example.json")
+    console.log("map triggered");
+    this.getFromServer();
   }
-  public parseDatabase(path: string){
-    //line below should be replaced with backend call
-    
-    const database = require(path)
-    this.clientName = database["client"]
-    this.clientStations = []
-    for (let e of database["stations"]){
-      let geo = new Geotag(e["geo"]["lat"],e["geo"]["lng"]);
-      console.log("lat", e["geo"]["lat"],"lng",e["geo"]["lng"]);
-      const stat = new Station(e["name"],e["adresse"],e["dispo"],e["max"],geo);
-      this.clientStations.push(stat);
-      console.log("lat", stat.geo.latitude,"lng",e["geo"]["lng"]);
-    }
-    this.lat = this.clientStations[0].geo.latitude;
-    this.lng = this.clientStations[0].geo.longitude;
+  
+  public getFromServer(){
+    this.dataService.sendGetRequest(this.id).subscribe(data=>{
+      this.database=data;
+      this.clientName = this.database["client"];
+      console.log("request",data);
+      this.clientStations = [];
+      for (let e of this.database["stations"]){
+        this.clientStations.push(new Station(e["name"],e["adresse"],e["dispo"],e["max"],e["id"],e["geo_lat"],e["geo_lng"]))
+      }
+      console.log("ts object",this.clientStations);
+    })
   }
+  
+
 
 }

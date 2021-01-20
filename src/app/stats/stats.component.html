@@ -1,12 +1,11 @@
 
 
 
-<form clrForm >
-    <select clrSelect name="options" [(ngModel)]="selectedOption" (change)="onChangeGraphType($event)">
-        <option value="evolution">Evolution</option>
-        <option value="currentlyAvailable">Disponible tout de suite</option>
+<form clrForm *ngIf="clientStations">
+    <select clrSelect name="laund_select" [(ngModel)]="selectedOption" (change)="onChangeGraphType($event)">
+        <option *ngFor="let station of clientStations" [value]="station.id">{{station.name}}</option>
     </select>
-    <ng-container *ngIf="selectedOption === 'evolution'">
+    <ng-container *ngIf="selectedOption.needsDate === true">
         <clr-date-container>
             <input type="date" clrDate name="startDate" [(ngModel)]="startDate" min="2019-11-17">
         </clr-date-container>
@@ -16,7 +15,7 @@
     </ng-container>
     
 </form>
-<div style="display: block; width: 70%;">
+<div style="display: block; width: 90%;">
     <canvas baseChart
     [datasets]="barChartData"
     [labels]="barChartLabels"

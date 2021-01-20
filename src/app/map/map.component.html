@@ -1,3 +1,7 @@
-<agm-map [latitude]="lat" [longitude]="lng">
+<ng-container *ngIf="clientStations">
+  <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker *ngFor="let stat of clientStations"[latitude]="stat.geo.latitude" [longitude]="stat.geo.longitude" [mdbTooltip]="'Marker label:'+stat.adresse"></agm-marker>
   </agm-map>
+</ng-container>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2EqiPm9zI3SUWgip5zhySlq3ZEb9mbeU&callback=initMap"
+type="text/javascript"></script>
