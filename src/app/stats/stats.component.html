@@ -1,27 +1,24 @@
 
 
-
-<form clrForm *ngIf="clientStations">
-    <select clrSelect name="laund_select" [(ngModel)]="selectedOption" (change)="onChangeGraphType($event)">
-        <option *ngFor="let station of clientStations" [value]="station.id">{{station.name}}</option>
-    </select>
-    <ng-container *ngIf="selectedOption.needsDate === true">
-        <clr-date-container>
-            <input type="date" clrDate name="startDate" [(ngModel)]="startDate" min="2019-11-17">
-        </clr-date-container>
-        <clr-date-container>
-            <input type="date" clrDate name="endDate" [(ngModel)]="endDate">
-        </clr-date-container>
-    </ng-container>
-    
-</form>
-<div style="display: block; width: 90%;">
-    <canvas baseChart
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [plugins]="barChartPlugins"
-    [legend]="barChartLegend"
-    [chartType]="barChartType">
-    </canvas>
+<div *ngIf="clientStations">
+    <form clrForm>
+        <select clrSelect name="laund_select" [(ngModel)]="selectedOption" (change)="onChangeGraphType($event)">
+            <option *ngFor="let station of clientStations; let i = index" [value]="station.id" selected="selected">{{station.name}}</option>
+        </select>
+        <select clrSelect name="number_select" [(ngModel)]="numberOfPoints" (change)="onChangeGraphType($event)">
+            <option selected="selected" [value]="10">{{10}}</option>
+            <option [value]="50">{{50}}</option>
+            <option [value]="100">{{100}}</option>
+        </select>
+    </form>
+    <div *ngIf="barChartData.length > 0"style="display: block; width: 90%;">
+        <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+        </canvas>
+    </div>
 </div>

@@ -17,6 +17,9 @@ export class DataService {
   }
   public sendGetDatapoints(id, laund_id, nombre){
     console.log('demande GET')
-    return this.httpClient.get<JSON>(this.REST_API_SERVER+"/data/"+laund_id+"?id="+id+"&nombre="+nombre);
+    return this.httpClient.get<JSON>(this.REST_API_SERVER+"/data/"
+    +laund_id
+    +"?id="
+    +id+"&nombre="+nombre);
   }
 }

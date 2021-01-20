@@ -25,17 +25,18 @@ export class StatsComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
+  public numberOfPoints = 10;
   public selectedOption: any;
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Laverie A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Laverie B' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'dispo' },
   ];
 
   ngOnInit(): void {
     this.getFromServer()
-    if (this.clientStations.length >0) {
+    if (this.clientStations) {
       this.selectedOption = this.clientStations[0];
     }
+    this.onChangeGraphType(null);
     
   }
   public getFromServer(){
@@ -51,21 +52,23 @@ export class StatsComponent implements OnInit {
   }
   public onChangeGraphType(event){
     console.log("selected option", this.selectedOption);
+    console.log("number points ", this.numberOfPoints);
+    this.getDataPoints()
   }
   public getDataPoints(){
-    this.dataService.sendGetRequest(this.id).subscribe(data=>{
+    this.dataService.sendGetDatapoints(this.id,this.selectedOption,this.numberOfPoints).subscribe(data=>{
       this.database=data;
       console.log(data);
-      this.clientName = this.database["client"]
-    this.clientStations = []
-    for (let e of this.database["stations"]){
-      this.clientStations.push(new Station(e["name"],e["adresse"],e["dispo"],e["max"],e["id"],e["geo_lat"],e["geo_lng"]))
-    }
+      this.barChartData[0].data = []
+      this.barChartLabels = []
+      for (let e of this.database["datapoints"]){
+        console.log(e["dispo"])
+        console.log(e["timestamp"])
+        this.barChartData[0].data.push(e["dispo"])
+        this.barChartLabels.push(e["timestamp"])
+      }
     })
-    
   }
-  
-
 }
 
 export class GraphType {
