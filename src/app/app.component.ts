@@ -14,7 +14,8 @@ export class AppComponent implements OnInit{
   public clientStations: Station[];
   public database: any;
   private id=1;
-
+  public lat = 45.7690096;
+  public lng = 4.8357004;
 
   constructor(private dataService : DataService){}
 
