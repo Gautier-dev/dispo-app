@@ -12,11 +12,11 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
   public sendGetRequest(id){
-    console.log('demande GET')
+    console.log('GET Laveries')
     return this.httpClient.get<JSON>(this.REST_API_SERVER+"?id="+id);
   }
   public sendGetDatapoints(id, laund_id, nombre){
-    console.log('demande GET')
+    console.log('GET Data')
     return this.httpClient.get<JSON>(this.REST_API_SERVER+"/data/"
     +laund_id
     +"?id="

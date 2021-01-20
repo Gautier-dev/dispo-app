@@ -36,8 +36,8 @@ export class StatsComponent implements OnInit {
     if (this.clientStations) {
       this.selectedOption = this.clientStations[0];
     }
-    this.onChangeGraphType(null);
-    
+    // Send request every 10 seconds
+    setInterval(this.onChangeGraphType.bind(this),10000)
   }
   public getFromServer(){
     this.dataService.sendGetRequest(this.id).subscribe(data=>{
@@ -62,10 +62,8 @@ export class StatsComponent implements OnInit {
       this.barChartData[0].data = []
       this.barChartLabels = []
       for (let e of this.database["datapoints"]){
-        console.log(e["dispo"])
-        console.log(e["timestamp"])
-        this.barChartData[0].data.push(e["dispo"])
-        this.barChartLabels.push(e["timestamp"])
+        this.barChartData[0].data.unshift(e["dispo"])
+        this.barChartLabels.unshift(e["timestamp"])
       }
     })
   }
